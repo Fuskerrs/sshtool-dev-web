@@ -3,14 +3,14 @@
 
 FROM nginx:alpine
 
-# Copy static files
-COPY index.html /usr/share/nginx/html/
-COPY styles.css /usr/share/nginx/html/
-COPY script.js /usr/share/nginx/html/
-COPY favicon.svg /usr/share/nginx/html/
+# Copy static files with correct permissions
+COPY --chmod=644 index.html /usr/share/nginx/html/
+COPY --chmod=644 styles.css /usr/share/nginx/html/
+COPY --chmod=644 script.js /usr/share/nginx/html/
+COPY --chmod=644 favicon.svg /usr/share/nginx/html/
 
 # Copy nginx config
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY --chmod=644 nginx.conf /etc/nginx/conf.d/default.conf
 
 # Expose port
 EXPOSE 80
